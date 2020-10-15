@@ -96,6 +96,9 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
         lblQuenMK.setText("Quên mật khẩu");
         lblQuenMK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblQuenMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMKMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblQuenMKMouseEntered(evt);
             }
@@ -104,10 +107,10 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/language_english.png")));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/language_english.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/hinh/language_vietnam.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/language_vietnam.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/login.png"))); // NOI18N
@@ -208,6 +211,11 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
             dangNhap();
         }
     }//GEN-LAST:event_txtMatKhauKeyPressed
+
+    private void lblQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMKMouseClicked
+        new QuenMatKhau1().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblQuenMKMouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.qlchuyende.*;
 import java.awt.Component;
 import java.io.File;
 import java.util.List;

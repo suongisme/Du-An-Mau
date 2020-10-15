@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.qlnhanvien.*;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import laptrinhcity.DAO.NhanVienDAO;

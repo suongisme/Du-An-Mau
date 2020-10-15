@@ -22,13 +22,9 @@ public class JDBCHelper {
     private static final String PASSWORD = "nguyenvansuong";
     private static Connection con;
     
-    public static void openConnection() {
-        try {
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
-        }
+    public static void openConnection() throws SQLException, ClassNotFoundException{
+        Class.forName(DRIVER);
+        con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
     
     public static PreparedStatement getPreparedStament(String sql, Object...x) throws SQLException{

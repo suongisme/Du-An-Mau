@@ -5,9 +5,15 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.thongke.*;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import laptrinhcity.DAO.KhoaHocDAO;
+import laptrinhcity.DAO.ThongKeDAO;
+import laptrinhcity.entity.KhoaHoc;
 import laptrinhcity.utils.Auth;
-import laptrinhcity.utils.MsgBox;
+import laptrinhcity.utils.XDate;
 
 /**
  *
@@ -23,6 +29,7 @@ public class ThongKe1 extends javax.swing.JInternalFrame {
         setLocation(170, 0);
         tabs.setSelectedIndex(i);
         enableDoanhThu();
+        init();
     }
 
     /**
@@ -61,16 +68,28 @@ public class ThongKe1 extends javax.swing.JInternalFrame {
 
         lblKhoaHoc.setText("KHÓA HỌC:");
 
-        cboKhoaHoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboKhoaHoc.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboKhoaHocItemStateChanged(evt);
+            }
+        });
 
         tblBangDIem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã HV", "Họ Tên", "Điểm", "Xếp loại"
+                "Mã NH", "Họ Tên", "Điểm", "Xếp loại"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblBangDIem.setRowHeight(30);
         jScrollPane1.setViewportView(tblBangDIem);
 
@@ -164,19 +183,22 @@ public class ThongKe1 extends javax.swing.JInternalFrame {
 
         lblNam.setText("Năm");
 
-        cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         tblDoanhThu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Chuyên đè", "Số KH", "Số HV", "Doanh Thu", "HP cao nhất", "HP thấp nhất", "HP trung bình"
+                "Chuyên đề", "Số KH", "Số HV", "Doanh Thu", "HP cao nhất", "HP thấp nhất", "HP trung bình"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblDoanhThu.setRowHeight(30);
         jScrollPane4.setViewportView(tblDoanhThu);
 
@@ -233,6 +255,10 @@ public class ThongKe1 extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cboKhoaHocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboKhoaHocItemStateChanged
+        fillBangDiem();
+    }//GEN-LAST:event_cboKhoaHocItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboKhoaHoc;
@@ -255,11 +281,124 @@ public class ThongKe1 extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblNguoiHoc;
     // End of variables declaration//GEN-END:variables
 
+    KhoaHocDAO khoaHocDAO;
+    ThongKeDAO thongKeDAO;
+    DefaultComboBoxModel khoaHocCombobox, namComboBox;
+    DefaultTableModel bangDiemTable, nguoiHocTable, diemChuyenDeTable, doanhThuTable;
+
+    public void init() {
+        khoaHocDAO = new KhoaHocDAO();
+
+        khoaHocCombobox = (DefaultComboBoxModel) cboKhoaHoc.getModel();
+        namComboBox = (DefaultComboBoxModel) cboNam.getModel();
+
+        bangDiemTable = (DefaultTableModel) tblBangDIem.getModel();
+        nguoiHocTable = (DefaultTableModel) tblNguoiHoc.getModel();
+        diemChuyenDeTable = (DefaultTableModel) tblDiemChuyenDe.getModel();
+        doanhThuTable = (DefaultTableModel) tblDoanhThu.getModel();
+
+        thongKeDAO = new ThongKeDAO();
+
+        loadKhoaHoc();
+        loadNam();
+        fillBangDiem();
+        fillNguoiHoc();
+        fillDiemChuyenDe();
+        fillDoanhThu();
+    }
+
     private void enableDoanhThu() {
         if (!Auth.isManager()) {
             tabs.setEnabledAt(3, false);
         } else {
             tabs.setEnabledAt(3, true);
         }
+    }
+
+    private void loadKhoaHoc() {
+        khoaHocCombobox.removeAllElements();
+        List<KhoaHoc> khoaHocList = khoaHocDAO.selectAll();
+
+        khoaHocList.forEach((x)
+                -> khoaHocCombobox.addElement(x)
+        );
+    }
+
+    private void fillBangDiem() {
+        bangDiemTable.setRowCount(0);
+        KhoaHoc kh = (KhoaHoc) khoaHocCombobox.getSelectedItem();
+        List<Object[]> bangDiemList = thongKeDAO.getBangDiem(kh.getMaKhoaHoc());
+        bangDiemList.forEach((x)
+                -> {
+            bangDiemTable.addRow(new Object[]{
+                x[0], x[1], x[2], this.getRank((Double) x[2])
+            });
+        }
+        );
+    }
+
+    private String getRank(double diem) {
+        if (diem >= 9 && diem <= 10) {
+            return "Xuất sắc";
+        } else if (diem >= 7.5) {
+            return "Giỏi";
+        } else if (diem >= 6.5) {
+            return "Khá";
+        } else if (diem >= 5) {
+            return "Trung bình";
+        } else {
+            return "Yếu";
+        }
+    }
+
+    private void fillNguoiHoc() {
+        nguoiHocTable.setRowCount(0);
+        List<Object[]> luongNguoiHocList = thongKeDAO.getLuongNguoiHoc();
+
+        luongNguoiHocList.forEach((x)
+            -> nguoiHocTable.addRow(new Object[] 
+            {
+                x[0],x[1], getDate(x[2]), getDate(x[3])
+            })
+        );
+    }
+    
+    private String getDate(Object date) {
+        if (!(date instanceof String)) return null;
+        return XDate.toString(converStringToDate(date), "dd-MM-yyyy");
+    }
+    
+    private Date converStringToDate(Object date) {
+        return XDate.getDate((String) date, "yyyy-MM-dd");
+    }
+    
+    private void fillDiemChuyenDe() {
+        diemChuyenDeTable.setRowCount(0);
+        List<Object[]> diemChuyenDeList = thongKeDAO.getDiemChuyenDe();
+        diemChuyenDeList.forEach( (x) 
+            -> diemChuyenDeTable.addRow(x)
+        );
+    }
+    
+    private void loadNam() {
+        namComboBox.removeAllElements();
+        
+        for (int i=getYearNow(); i >= 1999; i--) {
+            namComboBox.addElement(i);
+        }
+    }
+    
+    private void fillDoanhThu() {
+        doanhThuTable.setRowCount(0);
+        int nam = (Integer) cboNam.getSelectedItem();
+        List<Object[]> doanhThuList = thongKeDAO.getDoanhThu(nam);
+        
+        doanhThuList.forEach( (x) 
+            -> doanhThuTable.addRow(x)
+        );
+    }
+    
+    private int getYearNow() {
+        return Integer.valueOf(XDate.toString(new Date(), "yyyy"));
     }
 }

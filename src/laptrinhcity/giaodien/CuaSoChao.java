@@ -108,7 +108,11 @@ public class CuaSoChao extends javax.swing.JFrame {
         startLoading = new Timer(10, loading);
         startLoading.start();
         
-        JDBCHelper.openConnection();
+        try {
+            JDBCHelper.openConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     ActionListener loading = (ActionEvent e) -> {
@@ -120,4 +124,6 @@ public class CuaSoChao extends javax.swing.JFrame {
             startLoading.stop();
         }
     };
+    
+    
 }

@@ -8,8 +8,10 @@ package laptrinhcity.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import laptrinhcity.jdbchepper.JDBCHelper;
+import laptrinhcity.utils.XDate;
 
 /**
  *
@@ -34,18 +36,18 @@ public class ThongKeDAO {
     }
     
     public List<Object[]> getBangDiem(Integer maKhoaHoc) {
-        String[] cols = {"makh","hoten","diem"};
+        String[] cols = {"manh","hoten","diem"};
         List<Object[]> obList = getArray("{CALL sp_bangdiem(?)}", cols, maKhoaHoc);
         return obList;
     }
     
     public List<Object[]> getLuongNguoiHoc() {
-        String[] cols = {"soluong","nam","somnhat","muonnhat"};
+        String[] cols = {"nam","soluong","somnhat","muonnhat"};
         return getArray("{CALL sp_luongnguoihoc}", cols);
     }
     
     public List<Object[]> getDiemChuyenDe() {
-        String[] cols = {"soluong","thapnhat","caonhat","trungbinh"};
+        String[] cols = {"tencd","soluong","thapnhat","caonhat","trungbinh"};
         return getArray("{CALL sp_diemchuyende}", cols);
     }
     

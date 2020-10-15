@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.qlNguoiHoc.*;
 import java.awt.Component;
 import java.text.ParseException;
 import java.util.Date;

@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.qlkhoahoc.*;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +34,6 @@ public class QuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
         setLocation(145, 0);
         tabs.setSelectedIndex(i);
         init();
-        
     }
 
     /**
@@ -593,9 +591,9 @@ public class QuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
     
     private boolean isDate() {
         try {
-            XDate.format.parse(txtKhaiGiang.getText());
+            XDate.getDate(txtKhaiGiang.getText(), pattern);
             return true;
-        } catch (ParseException e) {
+        } catch (Exception e) {
             return false;
         }
     }

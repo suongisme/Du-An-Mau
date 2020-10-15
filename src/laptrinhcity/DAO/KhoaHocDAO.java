@@ -106,6 +106,4 @@ public class KhoaHocDAO extends DAO<KhoaHoc, Integer>{
     public List<KhoaHoc> selectByMaChuyenDe(String macd) {
         return selectBySQL("select * from khoahoc where macd = ?", macd);
     }
-    
-    
 }

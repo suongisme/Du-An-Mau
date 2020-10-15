@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import laptrinhcity.doimatkhau.*;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;

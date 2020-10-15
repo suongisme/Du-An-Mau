@@ -11,6 +11,8 @@ import java.util.List;
 import laptrinhcity.entity.HocVien;
 import laptrinhcity.jdbchepper.JDBCHelper;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,10 +27,10 @@ public class HocVienDAO extends DAO<HocVien, Integer>{
     
     
     @Override
-    public void insert(HocVien entity) {
+    public void insert(HocVien entity){
         try {
             JDBCHelper.update(SQL_INSERT, entity.getMaKhoaHoc(),entity.getMaNguoiHoc(),entity.getDiem());
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             throw new RuntimeException("Thêm thất bại");
         }
     }

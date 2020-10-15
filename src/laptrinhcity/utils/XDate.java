@@ -30,7 +30,7 @@ public class XDate {
     }
     
     public static String toString(Date date, String pattern) {
-        if (date == null) return null;
+        if (date == null) return "null";
         format.applyPattern(pattern);
         return format.format(date);
     }

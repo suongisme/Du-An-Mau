@@ -13,7 +13,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 import laptrinhcity.utils.XTheme;
-import laptrinhcity.thongke.ThongKe1;
 import laptrinhcity.utils.Auth;
 import laptrinhcity.utils.MsgBox;
 import laptrinhcity.utils.XDate;
@@ -45,6 +44,7 @@ public class ManChinh extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         desktop = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         btnDangXuat = new javax.swing.JButton();
@@ -61,6 +61,7 @@ public class ManChinh extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnuHeThong = new javax.swing.JMenu();
+        mniProfile = new javax.swing.JMenuItem();
         mniDangXuat = new javax.swing.JMenuItem();
         mniDoimatKhau = new javax.swing.JMenuItem();
         mniThoat = new javax.swing.JMenuItem();
@@ -81,6 +82,8 @@ public class ManChinh extends javax.swing.JFrame {
         mnuGiaoDien = new javax.swing.JMenu();
         mniSang = new javax.swing.JMenuItem();
         mnitoi = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống quản lý đào tạo");
@@ -178,7 +181,7 @@ public class ManChinh extends javax.swing.JFrame {
         lblTrangThai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTrangThai.setText("Hệ thống");
 
-        lblImageTrangThai.setIcon(new javax.swing.ImageIcon(getClass().getResource("hinh/warn1.png")));
+        lblImageTrangThai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/warn1.png"))); // NOI18N
 
         lblOclock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblOclock.setText("00:00:00");
@@ -227,6 +230,11 @@ public class ManChinh extends javax.swing.JFrame {
         );
 
         mnuHeThong.setText("Hệ thống");
+
+        mniProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/profile.png")));
+        mniProfile.setText("Profile");
+        mniProfile.setPreferredSize(new java.awt.Dimension(77, 40));
+        mnuHeThong.add(mniProfile);
 
         mniDangXuat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         mniDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/logout.png")));
@@ -536,6 +544,7 @@ public class ManChinh extends javax.swing.JFrame {
     private javax.swing.JButton btnNguoiHoc;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblImageTrangThai;
@@ -555,6 +564,7 @@ public class ManChinh extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniLuongNguoiHoc;
     private javax.swing.JMenuItem mniNguoiHoc;
     private javax.swing.JMenuItem mniNhanVien;
+    private javax.swing.JMenuItem mniProfile;
     private javax.swing.JMenuItem mniSang;
     private javax.swing.JMenuItem mniThoat;
     private javax.swing.JMenuItem mnitoi;

@@ -112,14 +112,12 @@
             <Component class="javax.swing.JComboBox" name="cboKhoaHoc">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboKhoaHocItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -135,11 +133,35 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="0">
-                        <Column editable="true" title="M&#xe3; HV" type="java.lang.Object"/>
-                        <Column editable="true" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
-                        <Column editable="true" title="&#x110;i&#x1ec3;m" type="java.lang.Object"/>
-                        <Column editable="true" title="X&#x1ebf;p lo&#x1ea1;i" type="java.lang.Object"/>
+                        <Column editable="false" title="M&#xe3; NH" type="java.lang.Object"/>
+                        <Column editable="false" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x110;i&#x1ec3;m" type="java.lang.Object"/>
+                        <Column editable="false" title="X&#x1ebf;p lo&#x1ea1;i" type="java.lang.Object"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="rowHeight" type="int" value="30"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -316,12 +338,7 @@
             <Component class="javax.swing.JComboBox" name="cboNam">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -338,14 +355,14 @@
                 <Component class="javax.swing.JTable" name="tblDoanhThu">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="4">
-                        <Column editable="true" title="Chuy&#xea;n &#x111;&#xe8;" type="java.lang.Object"/>
-                        <Column editable="true" title="S&#x1ed1; KH" type="java.lang.Object"/>
-                        <Column editable="true" title="S&#x1ed1; HV" type="java.lang.Object"/>
-                        <Column editable="true" title="Doanh Thu" type="java.lang.Object"/>
-                        <Column editable="true" title="HP cao nh&#x1ea5;t" type="java.lang.Object"/>
-                        <Column editable="true" title="HP th&#x1ea5;p nh&#x1ea5;t" type="java.lang.Object"/>
-                        <Column editable="true" title="HP trung b&#xec;nh" type="java.lang.Object"/>
+                      <Table columnCount="7" rowCount="0">
+                        <Column editable="false" title="Chuy&#xea;n &#x111;&#x1ec1;" type="java.lang.Object"/>
+                        <Column editable="false" title="S&#x1ed1; KH" type="java.lang.Object"/>
+                        <Column editable="false" title="S&#x1ed1; HV" type="java.lang.Object"/>
+                        <Column editable="false" title="Doanh Thu" type="java.lang.Object"/>
+                        <Column editable="false" title="HP cao nh&#x1ea5;t" type="java.lang.Object"/>
+                        <Column editable="false" title="HP th&#x1ea5;p nh&#x1ea5;t" type="java.lang.Object"/>
+                        <Column editable="false" title="HP trung b&#xec;nh" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
