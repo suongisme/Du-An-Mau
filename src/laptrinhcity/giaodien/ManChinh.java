@@ -448,7 +448,7 @@ public class ManChinh extends javax.swing.JFrame {
     }//GEN-LAST:event_mnitoiActionPerformed
 
     private void mniDoimatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoimatKhauActionPerformed
-        hienThiManHinh(new CuaSoDoiMK1());
+        hienThiManHinh(new CuaSoDoiMK());
     }//GEN-LAST:event_mniDoimatKhauActionPerformed
 
     private void btnHuongDanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuongDanActionPerformed
@@ -475,39 +475,39 @@ public class ManChinh extends javax.swing.JFrame {
     }//GEN-LAST:event_mniThoatActionPerformed
 
     private void mniHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHocVienActionPerformed
-        hienThiManHinh(new QuanLyHocVien1());
+        hienThiManHinh(new QuanLyHocVien());
     }//GEN-LAST:event_mniHocVienActionPerformed
 
     private void btnHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocVienActionPerformed
-        hienThiManHinh(new QuanLyHocVien1());
+        hienThiManHinh(new QuanLyHocVien());
     }//GEN-LAST:event_btnHocVienActionPerformed
 
     private void btnNguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNguoiHocActionPerformed
-        hienThiManHinh(new QuanLyNguoihoc1(1));
+        hienThiManHinh(new QuanLyNguoihoc(1));
     }//GEN-LAST:event_btnNguoiHocActionPerformed
 
     private void mniNguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNguoiHocActionPerformed
-        hienThiManHinh(new QuanLyNguoihoc1(1));
+        hienThiManHinh(new QuanLyNguoihoc(1));
     }//GEN-LAST:event_mniNguoiHocActionPerformed
 
     private void btnChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuyenDeActionPerformed
-        hienThiManHinh(new QuanLyChuyenDe1(1));
+        hienThiManHinh(new QuanLyChuyenDe(1));
     }//GEN-LAST:event_btnChuyenDeActionPerformed
 
     private void mniChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniChuyenDeActionPerformed
-        hienThiManHinh(new QuanLyChuyenDe1(1));
+        hienThiManHinh(new QuanLyChuyenDe(1));
     }//GEN-LAST:event_mniChuyenDeActionPerformed
 
     private void btnKhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaHocActionPerformed
-        hienThiManHinh(new QuanLyKhoaHoc1(1));
+        hienThiManHinh(new QuanLyKhoaHoc(1));
     }//GEN-LAST:event_btnKhoaHocActionPerformed
 
     private void mniKhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoaHocActionPerformed
-        hienThiManHinh(new QuanLyKhoaHoc1(1));
+        hienThiManHinh(new QuanLyKhoaHoc(1));
     }//GEN-LAST:event_mniKhoaHocActionPerformed
 
     private void mniBangDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBangDiemActionPerformed
-        hienThiManHinh(new ThongKe1(0));
+        hienThiManHinh(new ThongKe(0));
     }//GEN-LAST:event_mniBangDiemActionPerformed
 
     private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
@@ -515,15 +515,15 @@ public class ManChinh extends javax.swing.JFrame {
             MsgBox.alert(this, "Bạn không có quyền xem thu mục này");
             return;
         }
-        hienThiManHinh(new ThongKe1(3));
+        hienThiManHinh(new ThongKe(3));
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void mniDiemChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDiemChuyenDeActionPerformed
-        hienThiManHinh(new ThongKe1(2));
+        hienThiManHinh(new ThongKe(2));
     }//GEN-LAST:event_mniDiemChuyenDeActionPerformed
 
     private void mniLuongNguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLuongNguoiHocActionPerformed
-        hienThiManHinh(new ThongKe1(1));
+        hienThiManHinh(new ThongKe(1));
     }//GEN-LAST:event_mniLuongNguoiHocActionPerformed
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
@@ -531,7 +531,7 @@ public class ManChinh extends javax.swing.JFrame {
             MsgBox.alert(this, "Bạn không có quyền vào đây!");
             return;
         }
-        hienThiManHinh(new QuanLyNhanVien1(1));
+        hienThiManHinh(new QuanLyNhanVien(1));
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

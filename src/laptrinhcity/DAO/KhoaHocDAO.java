@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import laptrinhcity.entity.HocVien;
 import laptrinhcity.entity.KhoaHoc;
 import laptrinhcity.jdbchepper.JDBCHelper;
 import laptrinhcity.utils.XDate;
@@ -105,5 +104,9 @@ public class KhoaHocDAO extends DAO<KhoaHoc, Integer>{
     
     public List<KhoaHoc> selectByMaChuyenDe(String macd) {
         return selectBySQL("select * from khoahoc where macd = ?", macd);
+    }
+    
+    public List<KhoaHoc> selectByMaNhanVien(String manv) {
+        return selectBySQL("select * from khoahoc where manv = ?", manv);
     }
 }

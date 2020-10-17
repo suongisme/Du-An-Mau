@@ -5,6 +5,7 @@
  */
 package laptrinhcity.entity;
 
+
 /**
  *
  * @author SuongNguyen

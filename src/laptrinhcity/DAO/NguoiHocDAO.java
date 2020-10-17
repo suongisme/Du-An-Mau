@@ -117,4 +117,8 @@ public class NguoiHocDAO extends DAO<NguoiHoc, String>{
         String sql = "SELECT * FROM nguoihoc WHERE hoten LIKE ? AND manh NOT IN (SELECT manh FROM hocvien where makh = ?)";
         return this.selectBySQL(sql,"%"+keyword+"%", makh);
     }
+    
+    public List<NguoiHoc> selectByMaNhanVien(String manv) {
+        return selectBySQL("select * from nguoihoc where manv = ?", manv);
+    }
 }

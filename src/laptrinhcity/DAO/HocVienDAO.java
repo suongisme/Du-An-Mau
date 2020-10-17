@@ -90,5 +90,7 @@ public class HocVienDAO extends DAO<HocVien, Integer>{
         return this.selectBySQL("select * from hocvien where makh = ?", maKhoaHoc);
     }
     
-    
+    public List<HocVien> selectByMaNguoiHoc(String maNguoiHoc) {
+        return this.selectBySQL("select * from hocvien where manh = ?", maNguoiHoc);
+    }
 }
