@@ -8,11 +8,13 @@ package laptrinhcity.giaodien;
 import java.awt.Component;
 import java.io.File;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import laptrinhcity.DAO.ChuyenDeDAO;
 import laptrinhcity.entity.ChuyenDe;
+import laptrinhcity.language.Language;
 import laptrinhcity.utils.Auth;
 import laptrinhcity.utils.MsgBox;
 import laptrinhcity.utils.XImage;
@@ -28,7 +30,9 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
      *
      * @param tabsPage
      */
+    ResourceBundle a;
     public QuanLyChuyenDe(int tabsPage) {
+        a = Language.getLanguage();
         initComponents();
         setLocation(135, 0);
         tabs.setSelectedIndex(tabsPage);
@@ -257,7 +261,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
 
         tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
+                {"", null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -273,6 +277,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
             }
         });
         tblDanhSach.setRowHeight(30);
+        tblDanhSach.getTableHeader().setReorderingAllowed(false);
         tblDanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDanhSachMouseClicked(evt);
@@ -315,7 +320,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblQLChuyenDe, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 436, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -457,6 +462,11 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
     private void insert() {
         try {
             
+            if (isExists()) {
+                MsgBox.alert(this, "Chuyên đề này đã tồn tại");
+                return;
+            }
+            
             if (isError()) return;
             
             chuyenDeDAO.insert(getForm());
@@ -489,7 +499,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
     private void delete() {
         try {
             
-            if (MsgBox.confirm(this, "Bạn có chắc chắn không?")) {
+            if (MsgBox.confirm(this, a.getString("Statement"))) {
                 chuyenDeDAO.delete(txtMaChuyenDe.getText());
                 fillTable();
                 XImage.delete(lblAnh.getToolTipText());
@@ -558,10 +568,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
             return true;
         }
         
-        if (isExists()) {
-            MsgBox.alert(this, "Chuyên đề này đã tồn tại");
-            return true;
-        }
+        
         
         if (!isImage()) {
             MsgBox.alert(this, "Phải chọn ảnh");

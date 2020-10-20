@@ -7,6 +7,8 @@ package laptrinhcity.giaodien;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.Timer;
 import laptrinhcity.jdbchepper.JDBCHelper;
 import laptrinhcity.utils.XTheme;
@@ -25,7 +27,7 @@ public class CuaSoChao extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         init();
-    }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

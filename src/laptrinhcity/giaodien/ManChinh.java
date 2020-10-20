@@ -9,9 +9,12 @@ package laptrinhcity.giaodien;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.SwingUtilities;
 import javax.swing.JComponent;
 import javax.swing.Timer;
+import laptrinhcity.language.Language;
 import laptrinhcity.utils.XTheme;
 import laptrinhcity.utils.Auth;
 import laptrinhcity.utils.MsgBox;
@@ -27,7 +30,6 @@ public class ManChinh extends javax.swing.JFrame {
     /**
      * Creates new form ManChinh
      */
-    
     public ManChinh() {
         initComponents();
         lblTrangThai.setText(this.getTitle());
@@ -61,7 +63,6 @@ public class ManChinh extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnuHeThong = new javax.swing.JMenu();
-        mniProfile = new javax.swing.JMenuItem();
         mniDangXuat = new javax.swing.JMenuItem();
         mniDoimatKhau = new javax.swing.JMenuItem();
         mniThoat = new javax.swing.JMenuItem();
@@ -156,7 +157,7 @@ public class ManChinh extends javax.swing.JFrame {
                 .addComponent(btnHocVien)
                 .addGap(18, 18, 18)
                 .addComponent(btnHuongDan)
-                .addGap(259, 259, 259))
+                .addGap(254, 254, 254))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnChuyenDe, btnDangXuat, btnHocVien, btnHuongDan, btnKetThuc, btnKhoaHoc, btnNguoiHoc});
@@ -225,16 +226,11 @@ public class ManChinh extends javax.swing.JFrame {
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 450, Short.MAX_VALUE)
+                .addGap(453, 453, 453)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         mnuHeThong.setText("Hệ thống");
-
-        mniProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/profile.png")));
-        mniProfile.setText("Profile");
-        mniProfile.setPreferredSize(new java.awt.Dimension(77, 40));
-        mnuHeThong.add(mniProfile);
 
         mniDangXuat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         mniDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/logout.png")));
@@ -564,7 +560,6 @@ public class ManChinh extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniLuongNguoiHoc;
     private javax.swing.JMenuItem mniNguoiHoc;
     private javax.swing.JMenuItem mniNhanVien;
-    private javax.swing.JMenuItem mniProfile;
     private javax.swing.JMenuItem mniSang;
     private javax.swing.JMenuItem mniThoat;
     private javax.swing.JMenuItem mnitoi;
@@ -598,7 +593,7 @@ public class ManChinh extends javax.swing.JFrame {
     ActionListener oclock = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            lblOclock.setText(XDate.toString(new Date(), "hh:mm:ss"));
+            lblOclock.setText(XDate.toString(new Date(), "hh:mm:ss aa"));
         }
     };
 }

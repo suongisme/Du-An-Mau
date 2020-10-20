@@ -5,7 +5,6 @@
  */
 package laptrinhcity.giaodien;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -604,9 +603,9 @@ public class QuanLyKhoaHoc extends javax.swing.JInternalFrame {
     }
     
     private boolean isPast() {
-        Date date = XDate.getDate(txtKhaiGiang.getText(), "dd-MM-yyyy");
-        Date today = XDate.getDateNow();
+        long date = XDate.getDate(txtKhaiGiang.getText(), pattern).getTime();
+        long today = XDate.getDateNow().getTime();
         
-        return (date.getTime()-today.getTime()) < 0;
+        return today > date;
     }
 }

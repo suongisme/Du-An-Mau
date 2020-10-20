@@ -6,7 +6,6 @@
 package laptrinhcity.giaodien;
 
 import java.awt.Component;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTextField;
@@ -507,6 +506,11 @@ public class QuanLyNguoihoc extends javax.swing.JInternalFrame {
 
     private void insert() {
         try {
+            if (isExists()) {
+                MsgBox.alert(this, "Người học đã tồn tại");
+                return;
+            }
+            
             if (isError()) {
                 return;
             }
@@ -626,6 +630,11 @@ public class QuanLyNguoihoc extends javax.swing.JInternalFrame {
             return true;
         }
         
+        if (isDateHigherNow()) {
+            MsgBox.alert(this, "Ngày sinh lớn hơn ngày hiện tại");
+            return true;
+        }
+        
         if (!isEmail()) {
             MsgBox.alert(this, "Email sai định dạng!");
             return true;
@@ -636,10 +645,7 @@ public class QuanLyNguoihoc extends javax.swing.JInternalFrame {
             return true;
         }
         
-        if (isExists()) {
-            MsgBox.alert(this, "Người học đã tồn tại");
-            return true;
-        }
+        
         
         return false;
     }
@@ -655,7 +661,7 @@ public class QuanLyNguoihoc extends javax.swing.JInternalFrame {
     }
 
     private boolean isEmail() {
-        String regex = "^[a-z]+@[a-z]+(\\.[a-z]+){1,2}";
+        String regex = "^[a-z]+\\w+@[a-z]+(\\.[a-z]+){1,2}";
         if (txtEmail.getText().matches(regex)) {
             return true;
         }
@@ -672,11 +678,17 @@ public class QuanLyNguoihoc extends javax.swing.JInternalFrame {
     
     private boolean isDate() {
         try {
-            XDate.getDate(txtNgaySinh.getText(), "dd-MM-yyyy");
+            XDate.getDate(txtNgaySinh.getText(), pattern);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    private boolean isDateHigherNow() {
+        long now = XDate.getDateNow().getTime();
+        long input = XDate.getDate(txtNgaySinh.getText(), pattern).getTime();
+        return input > now;
     }
     
     public boolean isExists() {

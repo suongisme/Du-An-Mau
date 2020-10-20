@@ -6,8 +6,12 @@
 package laptrinhcity.giaodien;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.util.Locale;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
 import laptrinhcity.DAO.NhanVienDAO;
-import laptrinhcity.utils.XTheme;
+import laptrinhcity.language.Language;
 import laptrinhcity.utils.Auth;
 import laptrinhcity.utils.MsgBox;
 
@@ -23,6 +27,7 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
     public CuaSoDangNhap() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -109,9 +114,19 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/language_english.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/language_vietnam.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laptrinhcity/giaodien/hinh/login.png"))); // NOI18N
         jLabel3.setRequestFocusEnabled(false);
@@ -213,8 +228,18 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMatKhauKeyPressed
 
     private void lblQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMKMouseClicked
-        
+        new QuenMatKhau().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblQuenMKMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Language.chagneLanguageVietnamese();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Language.changeLanguageEnglish();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JCheckBox ckhHienMK;
@@ -265,4 +290,6 @@ public class CuaSoDangNhap extends javax.swing.JFrame {
             txtMatKhau.setEchoChar('\u25cf');
         }
     }
+    
+    
 }

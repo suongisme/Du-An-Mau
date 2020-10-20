@@ -10,7 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.Random;
+import java.util.ResourceBundle;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -96,90 +99,5 @@ public class ChuyenDeDAO extends DAO<ChuyenDe, String> {
             System.out.println(e);
         }
         return chuyenDeList;
-    }
-
-    public static void main(String[] args) {
-//        // Recipient's email ID needs to be mentioned.
-//        String to = "suongnvph10619@fpt.edu.vn";
-//
-//        // Sender's email ID needs to be mentioned
-//        String from = "suongnguyenytm2001@gmail.com";
-//
-//        // Assuming you are sending email from localhost
-//        String host = "smtp.gmail.com";
-//
-//        // Get system properties
-//        Properties properties = System.getProperties();
-//
-//        // Setup mail server
-//        
-//        
-//        properties.put("mail.smtp.auth", "true");
-//        properties.put("mail.smtp.starttls.enable", "true");
-//        properties.put("mail.smtp.host", host);
-//        properties.put("mail.smtp.port", 465);
-//        Authenticator au = new Authenticator() {
-//            @Override
-//            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-//                return new javax.mail.PasswordAuthentication("suongnguyenytm2001@gmail.com", "nguyenvansuong2001");
-//            }
-//        };
-//        
-//        // Get the default Session object.
-//        Session session = Session.getDefaultInstance(properties, au);
-//
-//        try {
-//            // Create a default MimeMessage object.
-//            MimeMessage message = new MimeMessage(session);
-//
-//            // Set From: header field of the header.
-//            message.setFrom(new InternetAddress(from));
-//
-//            // Set To: header field of the header.
-//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-//
-//            // Set Subject: header field
-//            message.setSubject("This is the Subject Line!");
-//
-//            // Now set the actual message
-//            message.setText("This is actual message");
-//
-//            // Send message
-//            Transport.send(message);
-//            System.out.println("Sent message successfully....");
-//        } catch (MessagingException mex) {
-//            mex.printStackTrace();
-//        }
-try {
-			// thong so gmail
-			Properties pr = new Properties();
-			pr.put("mail.smtp.starttls.enable", "true");
-			pr.put("mail.smtp.auth", "true");
-			pr.put("mail.smtp.host", "smtp.gmail.com");
-			pr.put("mail.smtp.port", 587);
-
-			// dang nhap gmail
-			Authenticator auth = new Authenticator() {
-                            @Override
-                            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                                return new javax.mail.PasswordAuthentication("suongnvph10619@edu.fpt.vn", "nguyenvansuong2001");
-                            }
-                            
-			};
-			
-			// session
-			Session s = Session.getInstance(pr, auth);
-			Message mi = new MimeMessage(s);
-			mi.setFrom(new InternetAddress("suongnvph10619@edu.fpt.vn"));
-			mi.addRecipients(Message.RecipientType.TO, InternetAddress.parse("nguyenvansuong200@gmail.com"));
-			mi.setSubject("test");
-			mi.setText("tao la suong");
-			Transport.send(mi);
-			
-			System.out.println("Succeed!");
-		} catch (Exception e) {
-			System.out.println(e);
-			System.out.println("ERROR");
-		}
     }
 }
