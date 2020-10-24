@@ -28,11 +28,10 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
     /**
      * Creates new form QuanLyHocVien1
      */
-
     public QuanLyHocVien() {
         initComponents();
         setLocation(245, 0);
-        
+
         init();
     }
 
@@ -335,7 +334,13 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        capNhatDiem();
+        try {
+            capNhatDiem();
+        } catch (NumberFormatException ex) { 
+            MsgBox.alert(this, "Sai định dạng điểm");
+        }catch (RuntimeException e) {
+            MsgBox.alert(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void txtTimkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimkiemKeyReleased
@@ -363,7 +368,7 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblNguoiHoc;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
-    
+
     private HocVienDAO hocVienDAO;
     private ChuyenDeDAO chuyenDeDAO;
     private KhoaHocDAO khoaHocDAO;
@@ -387,7 +392,7 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
         khoaHocCombo = (DefaultComboBoxModel) cboKhocHoc.getModel();
         nguoiHocModel = (DefaultTableModel) tblNguoiHoc.getModel();
         hocVienModel = (DefaultTableModel) tblHocVien.getModel();
-        
+
         loadChuyenDe();
     }
 
@@ -396,8 +401,8 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
         chuyenDeCombo.removeAllElements();
         List<ChuyenDe> chuyenDeList = chuyenDeDAO.selectAll();
 
-        chuyenDeList.forEach((x) -> 
-            chuyenDeCombo.addElement(x)
+        chuyenDeList.forEach((x)
+                -> chuyenDeCombo.addElement(x)
         );
     }
 
@@ -407,7 +412,7 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
         List<KhoaHoc> khoaHocList = khoaHocDAO.selectByMaChuyenDe(cd.getMaCd());
 
         khoaHocList.forEach((x)
-            -> khoaHocCombo.addElement(x)
+                -> khoaHocCombo.addElement(x)
         );
     }
 
@@ -417,7 +422,7 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
         if (kh == null) {
             return;
         }
-        
+
         List<NguoiHoc> nguoiHocList = nguoiHocDAO.selectNotHocVien(txtTimkiem.getText(), kh.getMaKhoaHoc());
 
         nguoiHocList.forEach((x)
@@ -430,9 +435,9 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
         );
     }
     int stt;
+
     private void fillHocVien() {
-        
-        
+
         stt = 1;
         hocVienModel.setRowCount(0);
         KhoaHoc kh = (KhoaHoc) cboKhocHoc.getSelectedItem();
@@ -440,19 +445,18 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
             return;
         }
         List<HocVien> hocVienList = hocVienDAO.selectByMaKhoaHoc(kh.getMaKhoaHoc());
-        
+
         hocVienList.forEach((x) -> {
-            
+
             NguoiHoc nh = nguoiHocDAO.selectById(x.getMaNguoiHoc());
             hocVienModel.addRow(new Object[]{
-                stt+++"", x.getMaHocVien()+"", x.getMaKhoaHoc()+"", nh.getHoTen(), x.getDiem()+""
+                stt++ + "", x.getMaHocVien() + "", x.getMaKhoaHoc() + "", nh.getHoTen(), x.getDiem() + ""
             });
         }
         );
-        
-        
+
     }
-    
+
     private void themVaoKhoaHoc() {
         try {
             hocVienDAO.insert(getHocVien());
@@ -464,7 +468,7 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
             MsgBox.alert(this, e.getMessage());
         }
     }
-    
+
     private HocVien getHocVien() {
         String maNguoiHoc = (String) tblNguoiHoc.getValueAt(selectIndexTableNguoiHoc, 0);
         int maKhoaHoc = ((KhoaHoc) cboKhocHoc.getSelectedItem()).getMaKhoaHoc();
@@ -482,44 +486,44 @@ public class QuanLyHocVien extends javax.swing.JInternalFrame {
                 MsgBox.alert(this, "Xóa thành công");
                 changeEnable(false);
             }
-            
+
         } catch (Exception e) {
             MsgBox.alert(this, e.getMessage());
         }
     }
+
     private HocVien getHocVienById() {
-        HocVien hv = hocVienDAO.selectById(Integer.parseInt((String)tblHocVien.getValueAt(selectIndexTableHocVien, 1)));
+        HocVien hv = hocVienDAO.selectById(Integer.parseInt((String) tblHocVien.getValueAt(selectIndexTableHocVien, 1)));
         return hv;
     }
 
-    private void capNhatDiem() {
-        try {
-            for (int row = 0; row < tblHocVien.getRowCount(); row++) {
-                HocVien hv = hocVienDAO.selectById((Integer) tblHocVien.getValueAt(row, 1));
-                hv.setDiem(this.getDiemBy(row));
-                hocVienDAO.update(hv);
-            }
-            fillHocVien();
-            MsgBox.alert(this, "Cập nhật thành công");
-            changeEnable(false);
-        } catch (Exception x) {
-            MsgBox.alert(this, x.getMessage());
+    private void capNhatDiem() throws RuntimeException, NumberFormatException{
+        for (int row = 0; row < tblHocVien.getRowCount(); row++) {
+            HocVien hv = hocVienDAO.selectById(Integer.parseInt((String) tblHocVien.getValueAt(row, 1)));
+            hv.setDiem(this.getDiemBy(row));
+            hocVienDAO.update(hv);
         }
+        fillHocVien();
+        MsgBox.alert(this, "Cập nhật thành công");
+        changeEnable(false);
     }
-    
-    
-    
-    private double getDiemBy(int line) {
-        try {
-            return Double.parseDouble(String.valueOf(tblHocVien.getValueAt(line, 4)));
-        } catch (NumberFormatException e) {
-            return 0;
+
+    private Double getDiemBy(int line) throws NumberFormatException {
+        double grade = Double.parseDouble(String.valueOf(tblHocVien.getValueAt(line, 4)));
+        if (grade < 0) {
+            throw new RuntimeException("Điểm không được nhỏ hơn 0!");
         }
+        if (grade > 10) {
+            throw new RuntimeException("Điểm không được lớn hơn 10!");
+        }
+
+        return grade;
+
     }
 
     private void changeEnable(boolean x) {
         if (Auth.isManager()) {
             btnXoa.setEnabled(x);
-        } 
+        }
     }
 }

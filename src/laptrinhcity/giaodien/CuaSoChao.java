@@ -5,10 +5,9 @@
  */
 package laptrinhcity.giaodien;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.swing.Timer;
 import laptrinhcity.jdbchepper.JDBCHelper;
 import laptrinhcity.utils.XTheme;
@@ -23,11 +22,13 @@ public class CuaSoChao extends javax.swing.JFrame {
      * Creates new form WelcomeJFrame
      */
     Timer startLoading;
+
     public CuaSoChao() {
         initComponents();
         setLocationRelativeTo(null);
         init();
-        }
+        setIconImage(Toolkit.getDefaultToolkit().getImage("icon_48.png"));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,20 +106,20 @@ public class CuaSoChao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar prgLoading;
     // End of variables declaration//GEN-END:variables
-    
+
     private void init() {
         startLoading = new Timer(10, loading);
         startLoading.start();
-        
+
         try {
             JDBCHelper.openConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     ActionListener loading = (ActionEvent e) -> {
-        int i = prgLoading.getValue()+1;
+        int i = prgLoading.getValue() + 1;
         prgLoading.setValue(i);
         if (i == 100) {
             new CuaSoDangNhap().setVisible(true);
@@ -126,6 +127,5 @@ public class CuaSoChao extends javax.swing.JFrame {
             startLoading.stop();
         }
     };
-    
-    
+
 }

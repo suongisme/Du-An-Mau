@@ -55,8 +55,6 @@ public class HocVien {
     }
 
     public void setDiem(double diem) {
-        if (diem > 10) diem = 10;
-        if (diem < 0) diem = 0;
         this.diem = diem;
     }
 }

@@ -8,13 +8,12 @@ package laptrinhcity.giaodien;
 import java.awt.Component;
 import java.io.File;
 import java.util.List;
-import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import laptrinhcity.DAO.ChuyenDeDAO;
+import laptrinhcity.DAO.KhoaHocDAO;
 import laptrinhcity.entity.ChuyenDe;
-import laptrinhcity.language.Language;
 import laptrinhcity.utils.Auth;
 import laptrinhcity.utils.MsgBox;
 import laptrinhcity.utils.XImage;
@@ -30,9 +29,7 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
      *
      * @param tabsPage
      */
-    ResourceBundle a;
     public QuanLyChuyenDe(int tabsPage) {
-        a = Language.getLanguage();
         initComponents();
         setLocation(135, 0);
         tabs.setSelectedIndex(tabsPage);
@@ -406,11 +403,13 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tableModel;
     private ChuyenDeDAO chuyenDeDAO;
+    private KhoaHocDAO khoaHocDAO;
     private XImage.Size size;
     private int index;
     public void init() {
         index = -1;
         chuyenDeDAO = new ChuyenDeDAO();
+        khoaHocDAO = new KhoaHocDAO();
         tableModel = (DefaultTableModel) tblDanhSach.getModel();
         size = new XImage().new Size(158, 185);
         fillTable();
@@ -499,10 +498,12 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
     private void delete() {
         try {
             
-            if (MsgBox.confirm(this, a.getString("Statement"))) {
+            if (MsgBox.confirm(this,"Bạn chắc chắn muốn xóa không?")) {
+                if (hasKhoaHoc()) {MsgBox.alert(this, "Chuyên đề này đang có khóa học!");return;}
                 chuyenDeDAO.delete(txtMaChuyenDe.getText());
                 fillTable();
                 XImage.delete(lblAnh.getToolTipText());
+                MsgBox.alert(this, "Xóa thành công");
                 changeEnable(false);
             }
             
@@ -568,8 +569,6 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
             return true;
         }
         
-        
-        
         if (!isImage()) {
             MsgBox.alert(this, "Phải chọn ảnh");
             return true;
@@ -621,5 +620,9 @@ public class QuanLyChuyenDe extends javax.swing.JInternalFrame {
     
     private boolean isExists() {
         return chuyenDeDAO.selectById(txtMaChuyenDe.getText()) != null;
+    }
+    
+    private boolean hasKhoaHoc() {
+        return !khoaHocDAO.selectByMaChuyenDe(txtMaChuyenDe.getText()).isEmpty();
     }
 }
